@@ -37,7 +37,7 @@ class Stack():
 
 
 
-class Graph:
+class Graph():
     """Represent a graph as a dictionary of vertices mapping labels to edges."""
     def __init__(self):
         self.vertices = {}
@@ -74,9 +74,9 @@ class Graph:
                 # mark it as visited
                 print(v)
                 visited.add(v)
-            # then put all of it's children into the queue
-            for neighbor in self.vertices[v]:
-                q.enqueue(neighbor)
+                # then put all of it's children into the queue
+                for neighbor in self.vertices[v]:
+                    q.enqueue(neighbor)
 
     def dft(self, starting_vertex_id):
         # create an empty stack
@@ -86,7 +86,7 @@ class Graph:
         # put the starting vertex on the stack
         s.push(starting_vertex_id)
         # while the stack is not empty
-        while s.size > 0:
+        while s.size() > 0:
             # pop the first vertex off the stack
             v = s.pop()
             # if that node has not been visited
@@ -97,4 +97,13 @@ class Graph:
                 # then put all of it's children into the stack
                 for neighbor in self.vertices[v]:
                     s.push(neighbor)
+
+
+
+## Part 3.5: Implement Depth-First Traversal using Recursion
+## Part 4: Implement Breadth-First Search
+## Part 5: Implement Depth-First Search
+
+
+
 
