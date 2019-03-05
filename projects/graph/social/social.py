@@ -1,8 +1,13 @@
-
+import random
+import queue
 
 class User:
     def __init__(self, name):
         self.name = name
+
+    def __repr__(self):
+        return self.name
+
 
 class SocialGraph:
     def __init__(self):
@@ -46,9 +51,21 @@ class SocialGraph:
         self.friendships = {}
         # !!!! IMPLEMENT ME
 
-        # Add users
+        # Add numUsers users
+        for i in range(numUsers):
+            self.addUser(f"User {i + 1}")
 
         # Create friendships
+        possibleFriendships = []
+        for userID in self.users:
+            for friendID in range(userID + 1, self.lastID + 1):
+                possibleFriendships.append((userID, friendID))
+        random.shuffle(possibleFriendships)
+        # print(possibleFriendships[:numUsers * avgFriendships])
+        for friendship in possibleFriendships[:numUsers * avgFriendships]:
+            self.addFriendship(friendship[0], friendship[1])
+
+
 
     def getAllSocialPaths(self, userID):
         """
@@ -61,12 +78,27 @@ class SocialGraph:
         """
         visited = {}  # Note that this is a dictionary, not a set
         # !!!! IMPLEMENT ME
+        q = queue.SimpleQueue()
+
+        q.put([userID])
+        while q.qsize() > 0:
+            path = q.get()
+            # print(path)
+            friend = path[-1]
+            if friend not in visited:
+                visited[friend] = path
+                for other_friend in self.friendships[friend]:
+                    new_path = list(path)
+                    new_path.append(other_friend)
+                    q.put(new_path)
+
         return visited
 
 
 if __name__ == '__main__':
     sg = SocialGraph()
     sg.populateGraph(10, 2)
-    print(sg.friendships)
+    # print(sg.users)
+    # print(sg.friendships)
     connections = sg.getAllSocialPaths(1)
     print(connections)

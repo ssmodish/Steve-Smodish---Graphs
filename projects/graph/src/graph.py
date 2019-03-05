@@ -122,41 +122,69 @@ class Graph():
 
 
 ## Part 4: Implement Breadth-First Search
+    def bfs(self, starting_vertex, target):
     # queue
+        q = Queue()
     # visited
-    # enqueue start
+        visited = set()
+    # enqueue start as a list
+        q.enqueue([starting_vertex])
     # while q
-        # dequeue item
-        # if item not visited,
-            # does it match target?
-                # get shortest path if it does (visited?)
-            # else
-                # mark as visited
-                # add neighbors to queue
+        while q.size() > 0:
+        # dequeue list
+            path = q.dequeue()
+        # if last item in list is not visited,
+            v = path[-1]
+            if v not in visited:
+            # mark as visited
+                visited.add(v)
+            # does last item in the list match target?
+                if v == target:
+                # return path
+                    return path
 
-
-
+            # add lists including neighbors to queue
+                for neighbor in self.vertices[v]:
+                # copy the current path
+                    new_path = list(path)
+                # add neighbors to that path
+                    new_path.append(neighbor)
+                # put those paths in the queue
+                    q.enqueue(new_path)
 
 
 
 ## Part 5: Implement Depth-First Search
-    # we need self, start, target, and path defaulted to empty
+    def dfs(self, starting_vertex, target):
     # stack
+        s = Stack()
     # visited
-    # path
-    # stack append start
-    #   while stack
-    #       pop item
-    #       if item not visited,
-    #           does it match target?
-    #           add to and return path if it does
-    #       else
-    #           mark as visited
-    #           add to path
-    #           if no neighbors
-    #               return nothing
-    #           else
-    #              add neighbors to stack
+        visited = set()
+    # push start as a list
+        s.push([starting_vertex])
+    # while s
+        while s.size() > 0:
+        # pop list
+            path = s.pop()
+        # if last item in list is not visited,
+            v = path[-1]
+            if v not in visited:
+            # mark as visited
+                visited.add(v)
+            # does last item in the list match target?
+                if v == target:
+                # return path
+                    return path
+
+            # add lists including neighbors to stack
+                for neighbor in self.vertices[v]:
+                # copy the current path
+                    new_path = list(path)
+                # add neighbors to that path
+                    new_path.append(neighbor)
+                # put those paths in the stack
+                    s.push(new_path)
+
 
 
 
