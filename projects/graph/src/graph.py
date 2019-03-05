@@ -101,8 +101,63 @@ class Graph():
 
 
 ## Part 3.5: Implement Depth-First Traversal using Recursion
+    # visited =
+    def recursive_dft(self, starting_vertex):
+        visited = set()
+        # def recursive-traverse(self, vertex)
+        def recursive_traverse(vertex):
+            # if not visited
+            if vertex not in visited:
+                # add to visited
+                visited.add(vertex)
+                # print
+                print(vertex)
+                # for neighbor in self.vertices[]:
+                for neighbor in self.vertices[vertex]:
+                    # recursive-traverse(neighbor)
+                    recursive_traverse(neighbor)
+
+        # recursive-traverse (starting vertex)
+        recursive_traverse(starting_vertex)
+
+
 ## Part 4: Implement Breadth-First Search
+    # queue
+    # visited
+    # enqueue start
+    # while q
+        # dequeue item
+        # if item not visited,
+            # does it match target?
+                # get shortest path if it does (visited?)
+            # else
+                # mark as visited
+                # add neighbors to queue
+
+
+
+
+
+
 ## Part 5: Implement Depth-First Search
+    # we need self, start, target, and path defaulted to empty
+    # stack
+    # visited
+    # path
+    # stack append start
+    #   while stack
+    #       pop item
+    #       if item not visited,
+    #           does it match target?
+    #           add to and return path if it does
+    #       else
+    #           mark as visited
+    #           add to path
+    #           if no neighbors
+    #               return nothing
+    #           else
+    #              add neighbors to stack
+
 
 
 
