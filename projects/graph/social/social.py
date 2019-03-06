@@ -97,8 +97,15 @@ class SocialGraph:
 
 if __name__ == '__main__':
     sg = SocialGraph()
-    sg.populateGraph(10, 2)
+    sg.populateGraph(1000, 5)
     # print(sg.users)
     # print(sg.friendships)
     connections = sg.getAllSocialPaths(1)
-    print(connections)
+    # print(connections)
+
+    num_connections = 0
+    total_distance = 0
+    for friendship, distance in connections.items():
+        num_connections += 1
+        total_distance += len(distance)
+    print(f"User 1 has {num_connections} connections with an average of {total_distance / num_connections} degrees of separation ")
