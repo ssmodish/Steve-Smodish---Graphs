@@ -62,7 +62,7 @@ class SocialGraph:
                 possibleFriendships.append((userID, friendID))
         random.shuffle(possibleFriendships)
         # print(possibleFriendships[:numUsers * avgFriendships])
-        for friendship in possibleFriendships[:numUsers * avgFriendships]:
+        for friendship in possibleFriendships[:(numUsers * avgFriendships) // 2]:
             self.addFriendship(friendship[0], friendship[1])
 
 
